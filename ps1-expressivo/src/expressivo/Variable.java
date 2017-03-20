@@ -47,7 +47,12 @@ public class Variable implements Expression {
      */
     @Override
     public boolean equals(Object thatObject){
-        return (thatObject instanceof Variable) && (name == ((Variable)thatObject).toString());
+        if (!(thatObject instanceof Variable)){
+            return false;
+        } else {
+            return (this.toString().equals(((Variable)thatObject).toString()));
+        }
+        //return (thatObject instanceof Variable) && (name == ((Variable)thatObject).toString());
     }
     
     @Override

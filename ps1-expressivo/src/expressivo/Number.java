@@ -56,7 +56,11 @@ public class Number implements Expression {
      */
     @Override
     public boolean equals(Object thatObject){
-        return (thatObject instanceof Number) && (value == ((Number)thatObject).getValue());
+        if (!(thatObject instanceof Number)){
+            return false;
+        } else {
+            return (this.getValue() == ((Number)thatObject).getValue());
+        }
     }
     
     @Override
