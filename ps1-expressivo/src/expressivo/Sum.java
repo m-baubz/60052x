@@ -38,8 +38,8 @@ public class Sum implements Expression {
     // add parens if left  is a Sum - to preserve structure and ensure that for all e:Expression, e.equals(Expression.parse(e.toString())).
     @Override 
     public String toString(){
-        String leftString = (left.getExpressionType() == "sum") ? left.toString() : "(" + left.toString() + ")";
-        return left.toString() + " + " + right.toString(); 
+        String leftString = (left.getExpressionType() == "sum") ? "(" + left.toString() + ")" : left.toString();
+        return leftString + " + " + right.toString(); 
     }
     
     /**

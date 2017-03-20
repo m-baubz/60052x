@@ -11,11 +11,17 @@
  *
  * For more information, see the parsers reading.
  */
-root ::= sum;
-@skip whitespace{
-	sum ::= primitive ('+' primitive)*;
-	primitive ::= number | '(' sum ')';
-}
-number ::= [0-9]+;
+root ::= expression;
+whitespace ::= [ \t\r\n]+;
 
-whitespace ::= [ ]+;
+@skip whitespace{
+	expression ::= variable | number | sum | product | '(' expression ')';
+	
+	// sum is defined as 2 or more arguments separated by +
+	sum ::= (variable | number | '(' expression ')' | product)('+' (variable | number | '(' expression ')' | product))+;
+	
+	//product is defined as 2 or more arguments separated by *
+	product ::= (variable | number | '(' expression ')') ('*' (variable | number | '(' expression ')'))+;	
+}
+number ::= [0-9]+('.'[0-9]+)?;
+variable ::= [A-Za-z]+;
