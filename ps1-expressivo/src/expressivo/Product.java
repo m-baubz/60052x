@@ -40,8 +40,8 @@ public class Product implements Expression {
         // add parens if either left or right expression is a Sum i.e. has lower precedence
         // or if left  is a Product - to preserve structure and ensure that for all e:Expression, e.equals(Expression.parse(e.toString())).
         String leftString = (left.getExpressionType() == "sum") || (left.getExpressionType() == "product") ? 
-                                left.toString() : "(" + left.toString() + ")"; 
-        String rightString = (right.getExpressionType() == "sum") ? right.toString() : "(" + right.toString() + ")";
+                                "(" + left.toString() + ")" : left.toString(); 
+        String rightString = (right.getExpressionType() == "sum") ? "(" + right.toString() + ")" : right.toString();
         return leftString + " * " + rightString;
     }
     

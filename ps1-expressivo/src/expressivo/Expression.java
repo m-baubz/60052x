@@ -1,5 +1,5 @@
 package expressivo;
-
+import java.io.*;
 import lib6005.parser.*;
 
 /**
@@ -21,6 +21,9 @@ public interface Expression {
     //              Add(Expression left, Expression right) +
     //              Multiply(Expression left,Expression right)
     
+    enum ExpressionGrammar {ROOT, EXPRESSION, SUM, PRODUCT, NUMBER, VARIABLE, WHITESPACE};
+
+    
     /**
      * get type of expression
      * @return type of expression as a string from ['number', 'variable', 'sum', 'product']
@@ -41,10 +44,88 @@ public interface Expression {
      * Parse an expression.
      * @param input expression to parse, as defined in the PS1 handout.
      * @return expression AST for the input
+     * @throws IOException 
+     * @throws UnableToParseException 
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static Expression parse(String input) {
-        throw new RuntimeException("unimplemented");
+    public static Expression parse(String input) throws UnableToParseException, IOException {
+        Parser<ExpressionGrammar> parser = GrammarCompiler.compile(new File("src/expressivo/Expression.g"), ExpressionGrammar.ROOT);
+        ParseTree<ExpressionGrammar> tree = parser.parse(input);
+        return buildAST(tree);
+    }
+        
+    public static Expression buildAST(ParseTree<ExpressionGrammar> tree){    
+        
+        switch(tree.getName()){
+        case NUMBER:
+            return new Number(tree.getContents());
+            
+        case VARIABLE:
+            return new Variable(tree.getContents());
+            
+        case SUM:{
+            // SUM can have 2 or more children: EXPRESSION, PRODUCT, NUMBER or VARIABLE.
+            // code builds a (nested) Sum expression by calling buildAST on every non-whitespace child
+            boolean first = true;
+            Expression result = null;
+            for(ParseTree<ExpressionGrammar> child : tree.children()){
+                if (child.getName() == ExpressionGrammar.WHITESPACE){
+                    continue;
+                } else {
+                    if(first){
+                        result = buildAST(child);
+                        first = false;
+                    }else{
+                        result = new Sum(result, buildAST(child));
+                    }
+                }
+            }
+            if (first) {
+                throw new RuntimeException("sum must have a non whitespace child:" + tree);
+            }
+            return result;
+        }
+        case PRODUCT:{
+            // PRODUCT can have 2 or more children: EXPRESSION, NUMBER or VARIABLE.
+            // code builds a (nested) Product expression by calling buildAST on every non-whitespace child
+            boolean first = true;
+            Expression result = null;
+            for(ParseTree<ExpressionGrammar> child : tree.children()){
+                if (child.getName() == ExpressionGrammar.WHITESPACE){
+                    continue;
+                } else {
+                    if(first){
+                        result = buildAST(child);
+                        first = false;
+                    }else{
+                        result = new Product(result, buildAST(child));
+                    }
+                }
+            }
+            if (first) {
+                throw new RuntimeException("sum must have a non whitespace child:" + tree);
+            }
+            return result;
+        }
+        case EXPRESSION:{
+            // EXPRESSION can contain a single child SUM, PRODUCT, NUMBER or VARIABLE.
+            // returns buildAST of first non-whitespace child. 
+            for(ParseTree<ExpressionGrammar> child : tree.children()){
+                if (child.getName() == ExpressionGrammar.WHITESPACE){
+                    continue;
+                } else {
+                    return buildAST(child);                        
+                }
+            }            
+        }            
+        case ROOT:
+            // ROOT only contains one EXPRESSION
+            return buildAST(tree.childrenByName(ExpressionGrammar.EXPRESSION).get(0));
+            
+        case WHITESPACE:
+            throw new RuntimeException("You should never reach here:" + tree);
+        }
+        throw new RuntimeException("You should never reach here:" + tree);
     }
     
     /**
