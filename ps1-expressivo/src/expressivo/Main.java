@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lib6005.parser.UnableToParseException;
 
 /**
  * Console interface to the expression system.

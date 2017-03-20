@@ -1,4 +1,4 @@
-package expressivo.beta;
+package expressivo;
 
 import static org.junit.Assert.assertEquals;
 

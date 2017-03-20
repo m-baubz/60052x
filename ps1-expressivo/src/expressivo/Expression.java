@@ -22,7 +22,6 @@ public interface Expression {
     //              Multiply(Expression left,Expression right)
     
     enum ExpressionGrammar {ROOT, EXPRESSION, SUM, PRODUCT, NUMBER, VARIABLE, WHITESPACE};
-
     
     /**
      * get type of expression
@@ -44,6 +43,8 @@ public interface Expression {
      * Parse an expression.
      * @param input expression to parse, as defined in the PS1 handout.
      * @return expression AST for the input
+     * @throws IOException 
+     * @throws UnableToParseException 
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static Expression parse(String input) {
