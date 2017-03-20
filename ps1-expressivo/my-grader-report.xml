@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="LAPTOP-5N7ESL4F" id="0" name="CommandsTest" package="expressivo" skipped="0" tests="1" time="0.06" timestamp="2017-03-19T15:46:34">
+  <testsuite errors="0" failures="0" hostname="LAPTOP-5N7ESL4F" id="0" name="CommandsTest" package="expressivo" skipped="0" tests="1" time="0.105" timestamp="2017-03-20T18:56:29">
       <properties>
           <property name="java.vendor" value="Oracle Corporation" />
 
@@ -60,7 +60,7 @@
 
           <property name="java.vm.info" value="mixed mode" />
 
-          <property name="ant.file" value="C:\Users\simon\workspace\ps1-expressivo\grader.xml" />
+          <property name="ant.file" value="C:\Users\simon\git\ps1-expressivo\grader.xml" />
 
           <property name="os.version" value="10.0" />
 
@@ -98,9 +98,9 @@
 
           <property name="beta.grader.jar" value="ps1-beta-grader.jar" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner expressivo.CommandsTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\simon\workspace\ps1-expressivo\.grader\TEST-expressivo.CommandsTest.xml crashfile=C:\Users\simon\workspace\ps1-expressivo\.grader\junitvmwatcher2425306515232701139.properties propsfile=C:\Users\simon\workspace\ps1-expressivo\.grader\junit1709008617438359149.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner expressivo.CommandsTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\simon\git\ps1-expressivo\.grader\TEST-expressivo.CommandsTest.xml crashfile=C:\Users\simon\git\ps1-expressivo\.grader\junitvmwatcher5689047946202127349.properties propsfile=C:\Users\simon\git\ps1-expressivo\.grader\junit2482569355925304409.properties" />
 
-          <property name="java.class.path" value="C:\Users\simon\workspace\ps1-expressivo\lib\junit-4.12.jar;C:\Users\simon\workspace\ps1-expressivo\lib\hamcrest-core-1.3.jar;C:\Users\simon\workspace\ps1-expressivo\lib\parserlib.jar;C:\Users\simon\workspace\ps1-expressivo\.grader\bin-student;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar" />
+          <property name="java.class.path" value="C:\Users\simon\git\ps1-expressivo\lib\junit-4.12.jar;C:\Users\simon\git\ps1-expressivo\lib\hamcrest-core-1.3.jar;C:\Users\simon\git\ps1-expressivo\lib\parserlib.jar;C:\Users\simon\git\ps1-expressivo\.grader\bin-student;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar" />
 
           <property name="ant.version" value="Apache Ant(TM) version 1.9.6 compiled on June 29 2015" />
 
@@ -126,7 +126,7 @@
 
           <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\ext;C:\windows\Sun\Java\lib\ext" />
 
-          <property name="user.dir" value="C:\Users\simon\workspace\ps1-expressivo" />
+          <property name="user.dir" value="C:\Users\simon\git\ps1-expressivo" />
 
           <property name="line.separator" value="&#xd;&#xa;" />
 
@@ -136,7 +136,7 @@
 
           <property name="problem.set" value="ps1" />
 
-          <property name="basedir" value="C:\Users\simon\workspace\ps1-expressivo" />
+          <property name="basedir" value="C:\Users\simon\git\ps1-expressivo" />
 
           <property name="ant.java.version" value="1.8" />
 
@@ -152,14 +152,14 @@
 
       </properties>
 
-      <testcase classname="expressivo.CommandsTest" name="testAssertionsEnabled" time="0.0" />
+      <testcase classname="expressivo.CommandsTest" name="testAssertionsEnabled" time="0.001" />
 
       <system-out><![CDATA[]]></system-out>
 
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="0" failures="0" hostname="LAPTOP-5N7ESL4F" id="1" name="ExpressionTest" package="expressivo" skipped="0" tests="1" time="0.056" timestamp="2017-03-19T15:46:34">
+  <testsuite errors="0" failures="0" hostname="LAPTOP-5N7ESL4F" id="1" name="ExpressionTest" package="expressivo" skipped="0" tests="1" time="0.057" timestamp="2017-03-20T18:56:29">
       <properties>
           <property name="java.vendor" value="Oracle Corporation" />
 
@@ -219,7 +219,7 @@
 
           <property name="java.vm.info" value="mixed mode" />
 
-          <property name="ant.file" value="C:\Users\simon\workspace\ps1-expressivo\grader.xml" />
+          <property name="ant.file" value="C:\Users\simon\git\ps1-expressivo\grader.xml" />
 
           <property name="os.version" value="10.0" />
 
@@ -257,9 +257,9 @@
 
           <property name="beta.grader.jar" value="ps1-beta-grader.jar" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner expressivo.ExpressionTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\simon\workspace\ps1-expressivo\.grader\TEST-expressivo.ExpressionTest.xml crashfile=C:\Users\simon\workspace\ps1-expressivo\.grader\junitvmwatcher965251335571621401.properties propsfile=C:\Users\simon\workspace\ps1-expressivo\.grader\junit7617300502465098915.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner expressivo.ExpressionTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\simon\git\ps1-expressivo\.grader\TEST-expressivo.ExpressionTest.xml crashfile=C:\Users\simon\git\ps1-expressivo\.grader\junitvmwatcher139382032833067845.properties propsfile=C:\Users\simon\git\ps1-expressivo\.grader\junit2772778569210814909.properties" />
 
-          <property name="java.class.path" value="C:\Users\simon\workspace\ps1-expressivo\lib\junit-4.12.jar;C:\Users\simon\workspace\ps1-expressivo\lib\hamcrest-core-1.3.jar;C:\Users\simon\workspace\ps1-expressivo\lib\parserlib.jar;C:\Users\simon\workspace\ps1-expressivo\.grader\bin-student;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar" />
+          <property name="java.class.path" value="C:\Users\simon\git\ps1-expressivo\lib\junit-4.12.jar;C:\Users\simon\git\ps1-expressivo\lib\hamcrest-core-1.3.jar;C:\Users\simon\git\ps1-expressivo\lib\parserlib.jar;C:\Users\simon\git\ps1-expressivo\.grader\bin-student;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar" />
 
           <property name="ant.version" value="Apache Ant(TM) version 1.9.6 compiled on June 29 2015" />
 
@@ -285,7 +285,7 @@
 
           <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\ext;C:\windows\Sun\Java\lib\ext" />
 
-          <property name="user.dir" value="C:\Users\simon\workspace\ps1-expressivo" />
+          <property name="user.dir" value="C:\Users\simon\git\ps1-expressivo" />
 
           <property name="line.separator" value="&#xd;&#xa;" />
 
@@ -295,7 +295,7 @@
 
           <property name="problem.set" value="ps1" />
 
-          <property name="basedir" value="C:\Users\simon\workspace\ps1-expressivo" />
+          <property name="basedir" value="C:\Users\simon\git\ps1-expressivo" />
 
           <property name="ant.java.version" value="1.8" />
 
@@ -311,14 +311,14 @@
 
       </properties>
 
-      <testcase classname="expressivo.ExpressionTest" name="testAssertionsEnabled" time="0.001" />
+      <testcase classname="expressivo.ExpressionTest" name="testAssertionsEnabled" time="0.002" />
 
       <system-out><![CDATA[]]></system-out>
 
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="6" failures="0" hostname="LAPTOP-5N7ESL4F" id="2" name="JavaInterfaceTest" package="expressivo.beta" skipped="0" tests="6" time="0.086" timestamp="2017-03-19T15:46:35">
+  <testsuite errors="4" failures="1" hostname="LAPTOP-5N7ESL4F" id="2" name="JavaInterfaceTest" package="expressivo.beta" skipped="0" tests="6" time="0.246" timestamp="2017-03-20T18:56:29">
       <properties>
           <property name="java.vendor" value="Oracle Corporation" />
 
@@ -378,7 +378,7 @@
 
           <property name="java.vm.info" value="mixed mode" />
 
-          <property name="ant.file" value="C:\Users\simon\workspace\ps1-expressivo\grader.xml" />
+          <property name="ant.file" value="C:\Users\simon\git\ps1-expressivo\grader.xml" />
 
           <property name="os.version" value="10.0" />
 
@@ -416,9 +416,9 @@
 
           <property name="beta.grader.jar" value="ps1-beta-grader.jar" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner expressivo.beta.JavaInterfaceTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\simon\workspace\ps1-expressivo\.grader\TEST-expressivo.beta.JavaInterfaceTest.xml crashfile=C:\Users\simon\workspace\ps1-expressivo\.grader\junitvmwatcher6569141244845769621.properties propsfile=C:\Users\simon\workspace\ps1-expressivo\.grader\junit686782299224397428.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner expressivo.beta.JavaInterfaceTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\simon\git\ps1-expressivo\.grader\TEST-expressivo.beta.JavaInterfaceTest.xml crashfile=C:\Users\simon\git\ps1-expressivo\.grader\junitvmwatcher6191165529112376808.properties propsfile=C:\Users\simon\git\ps1-expressivo\.grader\junit9213180089208978456.properties" />
 
-          <property name="java.class.path" value="C:\Users\simon\workspace\ps1-expressivo\lib\junit-4.12.jar;C:\Users\simon\workspace\ps1-expressivo\lib\hamcrest-core-1.3.jar;C:\Users\simon\workspace\ps1-expressivo\lib\parserlib.jar;C:\Users\simon\workspace\ps1-expressivo\.grader\bin-student;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar" />
+          <property name="java.class.path" value="C:\Users\simon\git\ps1-expressivo\lib\junit-4.12.jar;C:\Users\simon\git\ps1-expressivo\lib\hamcrest-core-1.3.jar;C:\Users\simon\git\ps1-expressivo\lib\parserlib.jar;C:\Users\simon\git\ps1-expressivo\.grader\bin-student;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\eclipse\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar" />
 
           <property name="ant.version" value="Apache Ant(TM) version 1.9.6 compiled on June 29 2015" />
 
@@ -444,7 +444,7 @@
 
           <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\ext;C:\windows\Sun\Java\lib\ext" />
 
-          <property name="user.dir" value="C:\Users\simon\workspace\ps1-expressivo" />
+          <property name="user.dir" value="C:\Users\simon\git\ps1-expressivo" />
 
           <property name="line.separator" value="&#xd;&#xa;" />
 
@@ -454,7 +454,7 @@
 
           <property name="problem.set" value="ps1" />
 
-          <property name="basedir" value="C:\Users\simon\workspace\ps1-expressivo" />
+          <property name="basedir" value="C:\Users\simon\git\ps1-expressivo" />
 
           <property name="ant.java.version" value="1.8" />
 
@@ -470,11 +470,10 @@
 
       </properties>
 
-      <testcase classname="expressivo.beta.JavaInterfaceTest" name="testParseEquals" time="0.007">
-          <error message="unimplemented" type="java.lang.RuntimeException">java.lang.RuntimeException: unimplemented
-	at expressivo.Expression.parse(Expression.java:47)
-	at expressivo.beta.JavaInterfaceTest.testParseEquals(JavaInterfaceTest.java:22)
-</error>
+      <testcase classname="expressivo.beta.JavaInterfaceTest" name="testParseEquals" time="0.119">
+          <failure message="Expected identical expressions to be equal expected: expressivo.Product&lt;x * x&gt; but was: expressivo.Product&lt;x * x&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Expected identical expressions to be equal expected: expressivo.Product&lt;x * x&gt; but was: expressivo.Product&lt;x * x&gt;
+	at expressivo.beta.JavaInterfaceTest.testParseEquals(JavaInterfaceTest.java:24)
+</failure>
 
       </testcase>
 
@@ -486,13 +485,7 @@
 
       </testcase>
 
-      <testcase classname="expressivo.beta.JavaInterfaceTest" name="testParseToString" time="0.0">
-          <error message="unimplemented" type="java.lang.RuntimeException">java.lang.RuntimeException: unimplemented
-	at expressivo.Expression.parse(Expression.java:47)
-	at expressivo.beta.JavaInterfaceTest.testParseToString(JavaInterfaceTest.java:30)
-</error>
-
-      </testcase>
+      <testcase classname="expressivo.beta.JavaInterfaceTest" name="testParseToString" time="0.024" />
 
       <testcase classname="expressivo.beta.JavaInterfaceTest" name="testSimplifyTwice" time="0.001">
           <error message="unimplemented" type="java.lang.RuntimeException">java.lang.RuntimeException: unimplemented
@@ -502,10 +495,11 @@
 
       </testcase>
 
-      <testcase classname="expressivo.beta.JavaInterfaceTest" name="testParseInvalid" time="0.001">
-          <error message="Unexpected exception, expected&lt;java.lang.IllegalArgumentException&gt; but was&lt;java.lang.RuntimeException&gt;" type="java.lang.Exception">java.lang.Exception: Unexpected exception, expected&lt;java.lang.IllegalArgumentException&gt; but was&lt;java.lang.RuntimeException&gt;
-Caused by: java.lang.RuntimeException: unimplemented
-	at expressivo.Expression.parse(Expression.java:47)
+      <testcase classname="expressivo.beta.JavaInterfaceTest" name="testParseInvalid" time="0.026">
+          <error message="Unexpected exception, expected&lt;java.lang.IllegalArgumentException&gt; but was&lt;java.lang.NullPointerException&gt;" type="java.lang.Exception">java.lang.Exception: Unexpected exception, expected&lt;java.lang.IllegalArgumentException&gt; but was&lt;java.lang.NullPointerException&gt;
+Caused by: java.lang.NullPointerException
+	at expressivo.Expression.buildAST(Expression.java:67)
+	at expressivo.Expression.parse(Expression.java:62)
 	at expressivo.beta.JavaInterfaceTest.testParseInvalid(JavaInterfaceTest.java:17)
 </error>
 
@@ -519,7 +513,8 @@ Caused by: java.lang.RuntimeException: unimplemented
 
       </testcase>
 
-      <system-out><![CDATA[]]></system-out>
+      <system-out><![CDATA[unable to parse expression :(
+]]></system-out>
 
       <system-err><![CDATA[]]></system-err>
 
