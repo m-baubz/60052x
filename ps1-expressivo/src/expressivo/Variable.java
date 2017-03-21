@@ -60,6 +60,15 @@ public class Variable implements Expression {
         return Objects.hashCode(this.toString());
     }
     
+    @Override
+    public Expression diff(Variable dVar){
+        if (this.equals(dVar)) {
+            return new Number(1);
+        } else {
+            return new Number(0);
+        }
+    }
+    
     private void checkRep(){
         assert Pattern.compile("[A-Za-z]+").matcher(name).matches();
     }

@@ -37,10 +37,8 @@ public class Product implements Expression {
     
     @Override
     public String toString(){
-        // add parens if either left or right expression is a Sum i.e. has lower precedence
-        // or if left  is a Product - to preserve structure and ensure that for all e:Expression, e.equals(Expression.parse(e.toString())).
-        String leftString = (left.getExpressionType() == "sum") || (left.getExpressionType() == "product") ? 
-                                "(" + left.toString() + ")" : left.toString(); 
+        // add parens if either left or right expression is a Sum i.e. has lower precedence        
+        String leftString = (left.getExpressionType() == "sum") ? "(" + left.toString() + ")" : left.toString(); 
         String rightString = (right.getExpressionType() == "sum") ? "(" + right.toString() + ")" : right.toString();
         return leftString + " * " + rightString;
     }
@@ -57,6 +55,15 @@ public class Product implements Expression {
     @Override
     public int hashCode(){
         return Objects.hash(this.getExpressionType(), this.getLeft().hashCode(), this.getRight().hashCode());
+    }
+    
+    // d/dx[a * b] = a * d/dx[b] + b * d/dx[a]
+    @Override
+    public Expression diff(Variable dVar){
+        Expression leftDRight = new Product(left, right.diff(dVar));
+        Expression rightDLeft = new Product(right, left.diff(dVar));
+        
+        return new Sum(leftDRight, rightDLeft);
     }
     
     private void checkRep(){

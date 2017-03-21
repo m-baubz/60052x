@@ -35,11 +35,10 @@ public class Sum implements Expression {
         return right;
     }
     
-    // add parens if left  is a Sum - to preserve structure and ensure that for all e:Expression, e.equals(Expression.parse(e.toString())).
+    // 1+2+3 equals (1+2)+3
     @Override 
-    public String toString(){
-        String leftString = (left.getExpressionType() == "sum") ? "(" + left.toString() + ")" : left.toString();
-        return leftString + " + " + right.toString(); 
+    public String toString(){        
+        return left.toString() + " + " + right.toString(); 
     }
     
     /**
@@ -55,6 +54,13 @@ public class Sum implements Expression {
     public int hashCode(){
         return Objects.hash(this.getExpressionType(), this.getLeft().hashCode(), this.getRight().hashCode());
     }
+    
+    // d/dx[a+b] = d/dx[a] + d/dx[b]
+    @Override
+    public Expression diff(Variable dVar){
+        return new Sum(left.diff(dVar), right.diff(dVar));
+    }
+    
     
     private void checkRep(){
         assert (left != null && right != null);

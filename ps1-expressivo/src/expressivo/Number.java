@@ -68,6 +68,11 @@ public class Number implements Expression {
         return Objects.hashCode(this.getValue());
     }
     
+    @Override
+    public Expression diff(Variable dVar){
+        return new Number(0);       
+    }
+    
     private void checkRep(){
         assert Pattern.compile("[0-9]+(.[0-9]+)?").matcher(stringValue).matches();
         assert (value >= 0);

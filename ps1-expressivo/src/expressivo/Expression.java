@@ -161,6 +161,13 @@ public interface Expression {
     @Override
     public int hashCode();
     
+    /**
+     * differentiate an expression
+     * @param dVar - variable to differentiate by.
+     * @return expression that represents the derivative d/dVar[original_expression]. does not simplify.
+     */
+    public Expression diff(Variable dVar);
+    
     // TODO more instance methods
     
     /* Copyright (c) 2015-2017 MIT 6.005 course staff, all rights reserved.
