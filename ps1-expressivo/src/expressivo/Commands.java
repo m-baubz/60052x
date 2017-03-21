@@ -1,6 +1,7 @@
 package expressivo;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * String-based commands provided by the expression system.
@@ -40,7 +41,12 @@ public class Commands {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static String simplify(String expression, Map<String,Double> environment) {
-        throw new RuntimeException("unimplemented");
+        for (Entry<String, Double> entry: environment.entrySet()){
+            expression = expression.replaceAll("\\b".concat(entry.getKey()).concat("\\b"), entry.getValue().toString());
+        }
+
+        return expression;
+
     }
     
     /* Copyright (c) 2015-2017 MIT 6.005 course staff, all rights reserved.
