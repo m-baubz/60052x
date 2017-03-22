@@ -69,6 +69,12 @@ public class Variable implements Expression {
         }
     }
     
+    //returns a copy of itself
+    @Override
+    public Expression simplify() {
+        return new Variable(this.toString());
+    }
+    
     private void checkRep(){
         assert Pattern.compile("[A-Za-z]+").matcher(name).matches();
     }

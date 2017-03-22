@@ -41,11 +41,12 @@ public class Commands {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static String simplify(String expression, Map<String,Double> environment) {
+        String substitutedExpression = expression;
         for (Entry<String, Double> entry: environment.entrySet()){
-            expression = expression.replaceAll("\\b".concat(entry.getKey()).concat("\\b"), entry.getValue().toString());
+            substitutedExpression = substitutedExpression.replaceAll("\\b".concat(entry.getKey()).concat("\\b"), entry.getValue().toString());
         }
-
-        return expression;
+        Expression simplified = Expression.parse(substitutedExpression).simplify();
+        return simplified.toString();
 
     }
     

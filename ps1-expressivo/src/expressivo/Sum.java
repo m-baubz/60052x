@@ -60,9 +60,22 @@ public class Sum implements Expression {
     public Expression diff(Variable dVar){
         return new Sum(left.diff(dVar), right.diff(dVar));
     }
-    
+
+    @Override
+    public Expression simplify() {
+        if (this.getLeft().getExpressionType().equals("number") && this.getRight().getExpressionType().equals("number")){
+            return new Number(this.getLeft().getValue() + this.getRight().getValue());
+        } else if (this.getLeft().getExpressionType().equals("number") && this.getLeft().getValue() == 0){
+            return this.getRight().simplify();
+        } else if (this.getRight().getExpressionType().equals("number") && this.getRight().getValue() == 0){
+            return this.getLeft().simplify();
+        } else {
+            return new Sum(this.getLeft().simplify(), this.getRight().simplify());
+        }
+    }
     
     private void checkRep(){
         assert (left != null && right != null);
     }
+
 }

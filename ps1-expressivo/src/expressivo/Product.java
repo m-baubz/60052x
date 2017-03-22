@@ -66,6 +66,31 @@ public class Product implements Expression {
         return new Sum(leftDRight, rightDLeft);
     }
     
+    @Override
+    public Expression simplify() {
+        if (this.getLeft().getExpressionType().equals("number") && this.getLeft().getExpressionType().equals("number")){
+            return new Number(this.getLeft().getValue() * this.getRight().getValue());
+        } 
+        if (this.getLeft().getExpressionType().equals("number")){
+            if (this.getLeft().getValue() == 0){
+                return new Number(0);
+            }
+            if (this.getLeft().getValue() == 1){
+                return this.getRight().simplify();
+            }
+        } 
+        if (this.getRight().getExpressionType().equals("number")){
+            if (this.getRight().getValue() == 0){
+                return new Number(0);
+            }
+            if (this.getRight().getValue() == 1){
+                return this.getLeft().simplify();
+            }        
+        }
+        return new Product(this.getLeft().simplify(), this.getRight().simplify());
+        
+    }
+    
     private void checkRep(){
         assert (left != null && right != null);
     }

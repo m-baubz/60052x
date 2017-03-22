@@ -73,8 +73,16 @@ public class Number implements Expression {
         return new Number(0);       
     }
     
+    //returns a copy of itself
+    @Override
+    public Expression simplify() {
+        return new Number(this.getValue());
+    }
+    
     private void checkRep(){
         assert Pattern.compile("[0-9]+(.[0-9]+)?").matcher(stringValue).matches();
         assert (value >= 0);
     }
+
+
 }

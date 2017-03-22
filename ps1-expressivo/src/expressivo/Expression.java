@@ -168,6 +168,18 @@ public interface Expression {
      */
     public Expression diff(Variable dVar);
     
+    /**
+     * simplify an expression
+     * performs the following simplifications (recursively):
+     *      sum(num(a), num(b)) -> num(a+b)
+     *      sum(expr, num(0)) -> expr
+     *      prod(num(a), num(b)) -> num(a*b)
+     *      prod(expr, num(0)) -> num(0)
+     *      prod(expr, num(1)) -> expr
+     * @return simplified expression
+     */
+    public Expression simplify();
+    
     // TODO more instance methods
     
     /* Copyright (c) 2015-2017 MIT 6.005 course staff, all rights reserved.
