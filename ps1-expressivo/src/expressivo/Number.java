@@ -80,7 +80,7 @@ public class Number implements Expression {
     }
     
     private void checkRep(){
-        assert Pattern.compile("[0-9]+(.[0-9]+)?").matcher(stringValue).matches();
+        assert Pattern.compile("([0-9]*\\.)?[0-9]+").matcher(stringValue).matches();
         assert (value >= 0);
     }
 

@@ -68,7 +68,7 @@ public class Product implements Expression {
     
     @Override
     public Expression simplify() {
-        if (this.getLeft().getExpressionType().equals("number") && this.getLeft().getExpressionType().equals("number")){
+        if (this.getLeft().getExpressionType().equals("number") && this.getRight().getExpressionType().equals("number")){
             return new Number(this.getLeft().getValue() * this.getRight().getValue());
         } 
         if (this.getLeft().getExpressionType().equals("number")){

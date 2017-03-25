@@ -23,5 +23,5 @@ whitespace ::= [ \t\r\n]+;
 	//product is defined as 2 or more arguments separated by *
 	product ::= (variable | number | '(' expression ')') ('*' (variable | number | '(' expression ')'))+;	
 }
-number ::= [0-9]+('.'[0-9]+)?;
+number ::= ([0-9]*'.')?[0-9]+;
 variable ::= [A-Za-z]+;
