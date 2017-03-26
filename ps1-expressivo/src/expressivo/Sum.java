@@ -70,7 +70,12 @@ public class Sum implements Expression {
         } else if (this.getRight().getExpressionType().equals("number") && this.getRight().getValue() == 0){
             return this.getLeft().simplify();
         } else {
-            return new Sum(this.getLeft().simplify(), this.getRight().simplify());
+            Expression simplifiedExpression = new Sum(this.getLeft().simplify(), this.getRight().simplify());
+            if (simplifiedExpression.equals(this)){
+                return simplifiedExpression;
+            } else {
+                return simplifiedExpression.simplify();
+            }
         }
     }
     

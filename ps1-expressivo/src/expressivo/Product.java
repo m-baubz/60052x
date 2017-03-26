@@ -87,8 +87,12 @@ public class Product implements Expression {
                 return this.getLeft().simplify();
             }        
         }
-        return new Product(this.getLeft().simplify(), this.getRight().simplify());
-        
+        Expression simplifiedExpression = new Product(this.getLeft().simplify(), this.getRight().simplify());
+        if (simplifiedExpression.equals(this)){
+            return simplifiedExpression;
+        } else {
+            return simplifiedExpression.simplify();
+        }        
     }
     
     private void checkRep(){

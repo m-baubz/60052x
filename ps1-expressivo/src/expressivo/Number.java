@@ -1,5 +1,6 @@
 package expressivo;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -19,7 +20,9 @@ public class Number implements Expression {
     }
     
     public Number(double value){
-        this.stringValue = Double.toString(value);
+        DecimalFormat df = new DecimalFormat("#.#"); //to avoid sci notation
+        df.setMaximumFractionDigits(340); //340 = DecimalFormat.DOUBLE_FRACTION_DIGITS        
+        this.stringValue = df.format(value);
         this.value = value;
         checkRep();
     }
@@ -80,8 +83,8 @@ public class Number implements Expression {
     }
     
     private void checkRep(){
-        assert Pattern.compile("([0-9]*\\.)?[0-9]+").matcher(stringValue).matches();
-        assert (value >= 0);
+        assert Pattern.compile("([0-9]*\\.)?[0-9]+").matcher(this.stringValue).matches();
+        assert (this.value >= 0);
     }
 
 
