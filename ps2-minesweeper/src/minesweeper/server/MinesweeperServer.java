@@ -28,6 +28,7 @@ public class MinesweeperServer {
     private final ServerSocket serverSocket;
     /** True if the server should *not* disconnect a client after a BOOM message. */
     private final boolean debug;
+    private static Board gameBoard;
 
     // TODO: Abstraction function, rep invariant, rep exposure
 
@@ -54,15 +55,18 @@ public class MinesweeperServer {
         while (true) {
             // block until a client connects
             Socket socket = serverSocket.accept();
-
-            // handle the client
-            try {
-                handleConnection(socket);
-            } catch (IOException ioe) {
-                ioe.printStackTrace(); // but don't terminate serve()
-            } finally {
-                socket.close();
-            }
+            new Thread(new Runnable() {
+                public void run(){    
+                    try {                        
+                        // handle the client
+                        handleConnection(socket);
+                        socket.close();
+                    } catch (IOException ioe) {
+                        ioe.printStackTrace(); // but don't terminate serve()                        
+                    }
+                }
+            }).start();
+            
         }
     }
 
@@ -75,7 +79,7 @@ public class MinesweeperServer {
     private void handleConnection(Socket socket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
+        
         try {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 String output = handleRequest(line);
@@ -100,31 +104,62 @@ public class MinesweeperServer {
         String regex = "(look)|(help)|(bye)|"
                      + "(dig -?\\d+ -?\\d+)|(flag -?\\d+ -?\\d+)|(deflag -?\\d+ -?\\d+)";
         if ( ! input.matches(regex)) {
-            // invalid input
-            // TODO Problem 5
+            return "Invalid command. Type 'help' for instructions.";
         }
         String[] tokens = input.split(" ");
         if (tokens[0].equals("look")) {
-            // 'look' request
-            // TODO Problem 5
+            char[][] boardView = gameBoard.getView();
+            String boardMsg = "";
+            
+            for (int r = 0; r < boardView.length; r++){
+                for (int c = 0; c < boardView[0].length; c++){
+                    boardMsg += String.valueOf(boardView[r][c]) + " ";
+                }
+                boardMsg = boardMsg.trim() + "\r\n";                
+            }
+            return boardMsg;
         } else if (tokens[0].equals("help")) {
-            // 'help' request
-            // TODO Problem 5
+            return "Read the FM.";
         } else if (tokens[0].equals("bye")) {
             // 'bye' request
             // TODO Problem 5
         } else {
             int x = Integer.parseInt(tokens[1]);
             int y = Integer.parseInt(tokens[2]);
-            if (tokens[0].equals("dig")) {
-                // 'dig x y' request
-                // TODO Problem 5
+            if (tokens[0].equals("dig")) {                
+                char[][] boardView = gameBoard.dig(x, y);
+                if (boardView[0][0] == 'B'){
+                    return "BOOM!";
+                } else {
+                    String boardMsg = "";                    
+                    for (int r = 0; r < boardView.length; r++){
+                        for (int c = 0; c < boardView[0].length; c++){
+                            boardMsg += String.valueOf(boardView[r][c]) + " ";
+                        }
+                        boardMsg = boardMsg.trim() + "\r\n";                
+                    }
+                    return boardMsg;
+                }
             } else if (tokens[0].equals("flag")) {
-                // 'flag x y' request
-                // TODO Problem 5
+                char[][] boardView = gameBoard.flag(x, y);            
+                String boardMsg = "";                    
+                for (int r = 0; r < boardView.length; r++){
+                    for (int c = 0; c < boardView[0].length; c++){
+                        boardMsg += String.valueOf(boardView[r][c]) + " ";
+                    }
+                    boardMsg = boardMsg.trim() + "\r\n";                
+                }
+                return boardMsg; 
             } else if (tokens[0].equals("deflag")) {
-                // 'deflag x y' request
-                // TODO Problem 5
+                char[][] boardView = gameBoard.deflag(x, y);            
+                String boardMsg = "";                    
+                for (int r = 0; r < boardView.length; r++){
+                    for (int c = 0; c < boardView[0].length; c++){
+                        boardMsg += String.valueOf(boardView[r][c]) + " ";
+                    }
+                    boardMsg = boardMsg.trim() + "\r\n";                
+                }
+                return boardMsg; 
             }
         }
         // TODO: Should never get here, make sure to return in each of the cases above
@@ -246,8 +281,28 @@ public class MinesweeperServer {
      * @throws IOException if a network error occurs
      */
     public static void runMinesweeperServer(boolean debug, Optional<File> file, int sizeX, int sizeY, int port) throws IOException {
-        
-        // TODO: Continue implementation here in problem 4
+        if (file.isPresent()){
+            try(
+                    BufferedReader fileIn = new BufferedReader(new FileReader(file.get()));
+            ) {
+                String[] sizes = fileIn.readLine().split(",");
+                sizeX = Integer.parseInt(sizes[0]);
+                sizeY = Integer.parseInt(sizes[1]);
+                boolean[][] bombsFromFile = new boolean[sizeY][sizeX];
+                for (int r = 0; r < sizeY; r++){
+                    Arrays.fill(bombsFromFile[r], false);
+                    String[] line = fileIn.readLine().split(" ");
+                    for (int c = 0; c < sizeX; c++){
+                        bombsFromFile[r][c] = line[c].equals('1');
+                    }
+                }
+                gameBoard = new Board(bombsFromFile);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            } 
+        } else {
+            gameBoard = new Board(sizeX, sizeY);            
+        }
         
         MinesweeperServer server = new MinesweeperServer(port, debug);
         server.serve();
