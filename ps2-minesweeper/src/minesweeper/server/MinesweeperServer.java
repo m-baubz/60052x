@@ -131,14 +131,7 @@ public class MinesweeperServer {
                 if (boardView[0][0] == 'B'){
                     return "BOOM!";
                 } else {
-                    String boardMsg = "";                    
-                    for (int r = 0; r < boardView.length; r++){
-                        for (int c = 0; c < boardView[0].length; c++){
-                            boardMsg += String.valueOf(boardView[r][c]) + " ";
-                        }
-                        boardMsg = boardMsg.trim() + "\r\n";                
-                    }
-                    return boardMsg;
+                    return boardMsg(boardView);
                 }
             } else if (tokens[0].equals("flag")) {
                 char[][] boardView = gameBoard.flag(x, y);            
@@ -164,6 +157,18 @@ public class MinesweeperServer {
         }
         // TODO: Should never get here, make sure to return in each of the cases above
         throw new UnsupportedOperationException();
+    }
+
+    private String boardMsg(char[][] boardView) {
+        String boardMsg = "";                    
+        for (int r = 0; r < boardView.length; r++){
+            for (int c = 0; c < boardView[0].length; c++){
+                boardMsg += String.valueOf(boardView[r][c]) + " ";
+            }
+            boardMsg = boardMsg.substring(0, boardMsg.length()-1) + "\r\n";                
+        }
+        return boardMsg;
+        
     }
 
     /**

@@ -101,24 +101,26 @@ public class Board {
      * @return special value [['B']] if bombs[y][x] is true, else copy of boardView via getView() 
      */
     public synchronized char[][] dig(int x, int y){
-        if (boardView[y][x] == '-'){            
-            if (bombs[y][x]){
-                bombs[y][x] = false;
-                int b = countBombs(y, x);
-                boardView[y][x] = (b == 0) ? ' ' : (char) (b + '0'); // '0' is ascii 48; (char) 3 + 48 -> '3' 
-                revealAdjacent(y, x);
-                checkRep();
-                return new char[][]{{'B'}};
-            }else{
-                int b = countBombs(y, x);
-                if (b == 0){
-                    boardView[y][x] = ' ';
+        if (x >= 0 && x < cols && y >= 0 && y < rows){
+            if (boardView[y][x] == '-'){            
+                if (bombs[y][x]){
+                    bombs[y][x] = false;
+                    int b = countBombs(y, x);
+                    boardView[y][x] = (b == 0) ? ' ' : (char) (b + '0'); // '0' is ascii 48; (char) 3 + 48 -> '3' 
                     revealAdjacent(y, x);
-                } else {
-                    boardView[y][x] = (char) (b + '0');
+                    checkRep();
+                    return new char[][]{{'B'}};
+                }else{
+                    int b = countBombs(y, x);
+                    if (b == 0){
+                        boardView[y][x] = ' ';
+                        revealAdjacent(y, x);
+                    } else {
+                        boardView[y][x] = (char) (b + '0');
+                    }
+                    checkRep();
+                    return getView();
                 }
-                checkRep();
-                return getView();
             }
         }
         checkRep();
@@ -134,7 +136,7 @@ public class Board {
     private synchronized void revealAdjacent(int row, int col) {
         for (int r = row-1; r <= row+1; r++){
             for (int c = col-1; c <= col+1; c++){
-                if (!(r==row && c==col)){ //don't touch initial cell
+                if ((!(r==row && c==col)) && c >= 0 && c < cols && r >= 0 && r < rows){ //don't touch initial cell and stay within board
                     switch (boardView[r][c]){
                     case ' ': case 'F':
                         break;
@@ -169,16 +171,20 @@ public class Board {
     }
     
     public synchronized char[][] flag(int col, int row){
-        if (boardView[row][col] == '-'){
-            boardView[row][col] = 'F';
-        }
+        if (col >= 0 && col < cols && row >= 0 && row < rows){
+            if (boardView[row][col] == '-'){
+                boardView[row][col] = 'F';
+            }
+        }    
         checkRep();
         return getView();
     }
     
     public synchronized char[][] deflag(int col, int row){
-        if (boardView[row][col] == 'F'){
-            boardView[row][col] = '-';
+        if (col >= 0 && col < cols && row >= 0 && row < rows){
+            if (boardView[row][col] == 'F'){
+                boardView[row][col] = '-';
+            }
         }
         return getView();
     }
@@ -190,7 +196,9 @@ public class Board {
         int result = 0;
         for (int r = row-1; r <= row+1; r++){
             for (int c = col-1; c <= col+1; c++){
-                if (bombs[r][c]) {result++;}
+                if (c >= 0 && c < cols && r >= 0 && r < rows){                    
+                    if (bombs[r][c]) {result++;}
+                }
             }
         }
         return result;
