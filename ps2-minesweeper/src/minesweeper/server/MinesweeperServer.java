@@ -109,15 +109,7 @@ public class MinesweeperServer {
         String[] tokens = input.split(" ");
         if (tokens[0].equals("look")) {
             char[][] boardView = gameBoard.getView();
-            String boardMsg = "";
-            
-            for (int r = 0; r < boardView.length; r++){
-                for (int c = 0; c < boardView[0].length; c++){
-                    boardMsg += String.valueOf(boardView[r][c]) + " ";
-                }
-                boardMsg = boardMsg.trim() + "\r\n";                
-            }
-            return boardMsg;
+            return boardMsg(boardView);
         } else if (tokens[0].equals("help")) {
             return "Read the FM.";
         } else if (tokens[0].equals("bye")) {
@@ -135,24 +127,10 @@ public class MinesweeperServer {
                 }
             } else if (tokens[0].equals("flag")) {
                 char[][] boardView = gameBoard.flag(x, y);            
-                String boardMsg = "";                    
-                for (int r = 0; r < boardView.length; r++){
-                    for (int c = 0; c < boardView[0].length; c++){
-                        boardMsg += String.valueOf(boardView[r][c]) + " ";
-                    }
-                    boardMsg = boardMsg.trim() + "\r\n";                
-                }
-                return boardMsg; 
+                return boardMsg(boardView); 
             } else if (tokens[0].equals("deflag")) {
                 char[][] boardView = gameBoard.deflag(x, y);            
-                String boardMsg = "";                    
-                for (int r = 0; r < boardView.length; r++){
-                    for (int c = 0; c < boardView[0].length; c++){
-                        boardMsg += String.valueOf(boardView[r][c]) + " ";
-                    }
-                    boardMsg = boardMsg.trim() + "\r\n";                
-                }
-                return boardMsg; 
+                return boardMsg(boardView);
             }
         }
         // TODO: Should never get here, make sure to return in each of the cases above
