@@ -145,7 +145,7 @@ public class MinesweeperServer {
             }
             boardMsg = boardMsg.substring(0, boardMsg.length()-1) + "\r\n";                
         }
-        return boardMsg;
+        return boardMsg.substring(0, boardMsg.length()-2); // remove final \r\n because PrintWriter.println adds its own.
         
     }
 
@@ -268,7 +268,7 @@ public class MinesweeperServer {
             try(
                     BufferedReader fileIn = new BufferedReader(new FileReader(file.get()));
             ) {
-                String[] sizes = fileIn.readLine().split(",");
+                String[] sizes = fileIn.readLine().split(" ");
                 sizeX = Integer.parseInt(sizes[0]);
                 sizeY = Integer.parseInt(sizes[1]);
                 boolean[][] bombsFromFile = new boolean[sizeY][sizeX];
