@@ -31,7 +31,7 @@ public class PublishedTest {
 
     private static final int MAX_CONNECTION_ATTEMPTS = 10;
 
-    private static final String BOARDS_PKG = "test/minesweeper/";
+//    private static final String BOARDS_PKG = "test/minesweeper/";
 
     /**
      * Start a MinesweeperServer in debug mode with a board file from BOARDS_PKG.
@@ -54,7 +54,7 @@ public class PublishedTest {
         final String[] args = new String[] {
                 "--debug",
                 "--port", Integer.toString(PORT),
-                "--file", "C:/Users/sibab/git/60052x/ps2-minesweeper/test/minesweeper/board_file_5"
+                "--file", "test/minesweeper/board_file_5"
         };
         Thread serverThread = new Thread(() -> MinesweeperServer.main(args));
         serverThread.start();
@@ -117,6 +117,15 @@ public class PublishedTest {
         assertEquals("- - - - - - -", in.readLine());
         assertEquals("- - - - - - F", in.readLine());
         
+        out.println("flag 3 1");
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - F - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - F", in.readLine());
+        
 //        out.println("dig 3 1");
 //        assertEquals("             ", in.readLine());
 //        assertEquals("             ", in.readLine());
@@ -128,12 +137,21 @@ public class PublishedTest {
 
         out.println("dig 3 1");
         assertEquals("- - - - - - -", in.readLine());
-        assertEquals("- - - 1 - - -", in.readLine());
+        assertEquals("- - - F - - -", in.readLine());
         assertEquals("- - - - - - -", in.readLine());
         assertEquals("- - - - - - -", in.readLine());
         assertEquals("- - - - - - -", in.readLine());
         assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - F", in.readLine());
+        
+        out.println("dig 0 0");
+        assertEquals("  - - - - - -", in.readLine());
+        assertEquals("- - - F - - -", in.readLine());
         assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - -", in.readLine());
+        assertEquals("- - - - - - F", in.readLine());
 
         out.println("dig 4 1");
         assertEquals("BOOM!", in.readLine());
