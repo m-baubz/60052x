@@ -79,14 +79,28 @@ public class MinesweeperServer {
     private void handleConnection(Socket socket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        out.println("Welcome to Minesweeper.");
+        out.println(String.format("Welcome to Minesweeper. Players: %d including you. Board: %d columns by %d rows. Type 'help' for help.", Thread.activeCount()-1, gameBoard.getSizeX(), gameBoard.getSizeY()));
         try {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 String output = handleRequest(line);
-                if (output != null) {
-                    // TODO: Consider improving spec of handleRequest to avoid use of null
+                if (output.equals("BYE!")){
                     out.println(output);
+                    break;
+                } else if (output.equals("BOOM!")){
+                    out.println(output);
+                    if (! debug) {break;}
+                } else {
+                    Scanner outputScanner = new Scanner(output);
+                    while (outputScanner.hasNextLine()){
+                        out.println(outputScanner.nextLine());
+                    }
+                    outputScanner.close();
                 }
+// original code:
+//                if (output != null) {
+//                    // TODO: Consider improving spec of handleRequest to avoid use of null
+//                    out.println(output);
+//                }
             }
         } finally {
             out.close();
@@ -113,8 +127,7 @@ public class MinesweeperServer {
         } else if (tokens[0].equals("help")) {
             return "Read the FM.";
         } else if (tokens[0].equals("bye")) {
-            // 'bye' request
-            // TODO Problem 5
+            return "BYE!";
         } else {
             int x = Integer.parseInt(tokens[1]);
             int y = Integer.parseInt(tokens[2]);
@@ -136,17 +149,20 @@ public class MinesweeperServer {
         // TODO: Should never get here, make sure to return in each of the cases above
         throw new UnsupportedOperationException();
     }
-
+    /**
+     * builds a board message from a char[][] returned from Board object.
+     */
     private String boardMsg(char[][] boardView) {
         String boardMsg = "";                    
         for (int r = 0; r < boardView.length; r++){
             for (int c = 0; c < boardView[0].length; c++){
-                boardMsg += String.valueOf(boardView[r][c]) + " ";
+                String space = c < boardView[0].length-1 ? " " : ""; // don't add space to the end of line
+                boardMsg += String.valueOf(boardView[r][c]) + space;
             }
-            boardMsg = boardMsg.substring(0, boardMsg.length()-1) + "\r\n";                
+            String newline = r < boardView.length-1 ? String.format("%n") : ""; // don't add newline chars at the end of message 
+            boardMsg = boardMsg + newline;                
         }
-        return boardMsg.substring(0, boardMsg.length()-2); // remove final \r\n because PrintWriter.println adds its own.
-        
+        return boardMsg;        
     }
 
     /**

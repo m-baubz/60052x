@@ -78,6 +78,16 @@ public class Board {
     }
     
     /**
+     * Observer methods to get board size
+     */
+    public int getSizeX(){
+        return cols;
+    }
+    public int getSizeY(){
+        return rows;
+    }
+    
+    /**
      * Observer method that returns a copy of boardView
      */
     public synchronized char[][] getView(){
