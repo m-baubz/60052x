@@ -31,8 +31,8 @@ public class Board {
     
     /**
      * creates a Board and fills with bombs with a probability BOMB_DENSITY 
-     * @param sizeX - horizontal size (cols)
-     * @param sizeY - vertical size (rows)
+     * @param sizeX - horizontal size (cols) must be >=1
+     * @param sizeY - vertical size (rows) must be >=1
      */
     public Board(int sizeX, int sizeY){
         rows = sizeY;
@@ -57,7 +57,8 @@ public class Board {
     /**
      * creates a Board and fills it with bombs from file
      * @param bombsFromFile - a boolean[][] where bombsFromFile[y][x] is true if that cell has a bomb.
-     *                        each row must be of equal length
+     *                      - must have at least 1 element.
+     *                      - each row must be of equal length.
      */
     public Board(boolean[][] bombsFromFile){
         rows = bombsFromFile.length;

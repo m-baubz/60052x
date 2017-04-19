@@ -288,29 +288,33 @@ public class MinesweeperServer {
      */
     public static void runMinesweeperServer(boolean debug, Optional<File> file, int sizeX, int sizeY, int port) throws IOException {
         if (file.isPresent()){
-            try(
-                    BufferedReader fileIn = new BufferedReader(new FileReader(file.get()));
-            ) {
-                String[] sizes = fileIn.readLine().split(" ");
-                sizeX = Integer.parseInt(sizes[0]);
-                sizeY = Integer.parseInt(sizes[1]);
-                boolean[][] bombsFromFile = new boolean[sizeY][sizeX];
-                for (int r = 0; r < sizeY; r++){
-                    Arrays.fill(bombsFromFile[r], false);
-                    String[] line = fileIn.readLine().split(" ");
-                    for (int c = 0; c < sizeX; c++){
-                        bombsFromFile[r][c] = line[c].equals("1");
-                    }
-                }
-                gameBoard = new Board(bombsFromFile);
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            } 
+            boolean[][] bombsFromFile = parseBoardFromFile(file.get());
+            gameBoard = new Board(bombsFromFile);
+            
         } else {
             gameBoard = new Board(sizeX, sizeY);            
         }
         
         MinesweeperServer server = new MinesweeperServer(port, debug);
         server.serve();
+    }
+    
+    private static boolean[][] parseBoardFromFile(File file) throws IOException {        
+        try(
+                BufferedReader fileIn = new BufferedReader(new FileReader(file));
+        ) {
+            String[] sizes = fileIn.readLine().split(" ");
+            int sizeX = Integer.parseInt(sizes[0]);
+            int sizeY = Integer.parseInt(sizes[1]);
+            boolean[][] bombsFromFile = new boolean[sizeY][sizeX];
+            for (int r = 0; r < sizeY; r++){
+                Arrays.fill(bombsFromFile[r], false);
+                String[] line = fileIn.readLine().split(" ");
+                for (int c = 0; c < sizeX; c++){
+                    bombsFromFile[r][c] = line[c].equals("1");
+                }
+            }
+            return bombsFromFile;
+        }
     }
 }

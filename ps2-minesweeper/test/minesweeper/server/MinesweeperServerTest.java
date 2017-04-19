@@ -3,23 +3,34 @@
  */
 package minesweeper.server;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 
-/**
- * TODO
- */
-public class MinesweeperServerTest {
-    
-    private static Thread startMinesweeperServer() {
+import org.junit.Test;
 
-      final String[] args = new String[] {
-              "--debug",
-              "--port", "4444",
-              "--file", "test/minesweeper/server/board_file"
-      };
-      Thread serverThread = new Thread(() -> MinesweeperServer.main(args));
-      serverThread.start();
-      return serverThread;
-  }
+import minesweeper.server.MinesweeperServer;
+
+class ServerStub extends MinesweeperServer {
+    public ServerStub(int port, boolean debug) throws IOException {
+        super(port, debug);
+    }
+
+    @Override
+    public void serve(){
+        // you've been served
+    }
+}
+
+public class MinesweeperServerTest {
+
+    
     
 }
+
+
+    
+
