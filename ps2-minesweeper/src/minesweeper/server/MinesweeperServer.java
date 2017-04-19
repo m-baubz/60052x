@@ -292,7 +292,7 @@ public class MinesweeperServer {
                     Arrays.fill(bombsFromFile[r], false);
                     String[] line = fileIn.readLine().split(" ");
                     for (int c = 0; c < sizeX; c++){
-                        bombsFromFile[r][c] = line[c].equals('1');
+                        bombsFromFile[r][c] = line[c].equals("1");
                     }
                 }
                 gameBoard = new Board(bombsFromFile);

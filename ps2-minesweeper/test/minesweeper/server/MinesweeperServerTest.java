@@ -3,11 +3,23 @@
  */
 package minesweeper.server;
 
+import java.io.IOException;
+
 /**
  * TODO
  */
 public class MinesweeperServerTest {
     
-    // TODO
+    private static Thread startMinesweeperServer() {
+
+      final String[] args = new String[] {
+              "--debug",
+              "--port", "4444",
+              "--file", "test/minesweeper/server/board_file"
+      };
+      Thread serverThread = new Thread(() -> MinesweeperServer.main(args));
+      serverThread.start();
+      return serverThread;
+  }
     
 }
