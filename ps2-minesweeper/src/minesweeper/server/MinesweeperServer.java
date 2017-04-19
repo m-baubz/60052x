@@ -14,8 +14,7 @@ import minesweeper.Board;
  */
 public class MinesweeperServer {
 
-    // System thread safety argument
-    //   TODO Problem 5
+
 
     /** Default server port. */
     private static final int DEFAULT_PORT = 4444;
@@ -26,9 +25,17 @@ public class MinesweeperServer {
 
     /** Socket for receiving incoming connections. */
     private final ServerSocket serverSocket;
-    /** True if the server should *not* disconnect a client after a BOOM message. */
-    private final boolean debug;
+    
+    
+    /** Thread safety argument 
+     * The following are the variables accessed by multiple threads:
+     * debug is written only by main thread at the start of execution. Subsequent reads by threads don't cause thread-safety issues.
+     * board is designed as a thread-safe type using monitor pattern.
+     * players is only accessed using a dedicated lock playersLock
+    */
+    private final boolean debug; // True if the server should *not* disconnect a client after a BOOM message.
     private static Board gameBoard;
+    private int players = 0; Object playersLock = new Object(); // number of players and its lock
 
     // TODO: Abstraction function, rep invariant, rep exposure
 
@@ -55,6 +62,7 @@ public class MinesweeperServer {
         while (true) {
             // block until a client connects
             Socket socket = serverSocket.accept();
+            synchronized (playersLock){ players ++;}
             new Thread(new Runnable() {
                 public void run(){    
                     try {                        
@@ -63,6 +71,8 @@ public class MinesweeperServer {
                         socket.close();
                     } catch (IOException ioe) {
                         ioe.printStackTrace(); // but don't terminate serve()                        
+                    } finally {
+                        synchronized (playersLock){ players --;}
                     }
                 }
             }).start();
@@ -79,7 +89,9 @@ public class MinesweeperServer {
     private void handleConnection(Socket socket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        out.println(String.format("Welcome to Minesweeper. Players: %d including you. Board: %d columns by %d rows. Type 'help' for help.", Thread.activeCount()-1, gameBoard.getSizeX(), gameBoard.getSizeY()));
+        int p;
+        synchronized (playersLock){ p = players; }
+        out.println(String.format("Welcome to Minesweeper. Players: %d including you. Board: %d columns by %d rows. Type 'help' for help.", p, gameBoard.getSizeX(), gameBoard.getSizeY()));
         try {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 String output = handleRequest(line);
@@ -96,11 +108,6 @@ public class MinesweeperServer {
                     }
                     outputScanner.close();
                 }
-// original code:
-//                if (output != null) {
-//                    // TODO: Consider improving spec of handleRequest to avoid use of null
-//                    out.println(output);
-//                }
             }
         } finally {
             out.close();
